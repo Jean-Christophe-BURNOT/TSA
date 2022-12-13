@@ -1,0 +1,27 @@
+-----> Produit RC*dnu = 2
+
+RC: 0.125000
+Moyenne de YB(t): 0.476054
+Variance de YB(t): 0.045100
+Kurtosis de YB(t): 4.735421
+Moyenne corrigée de YB(t): 0.478198
+Variance corrigée de YB(t): 0.044947
+Kurtosis corrigée de YB(t): 4.740478
+-----> Produit RC*dnu = 20
+
+RC: 1.250000
+Moyenne de YB(t): 0.469187
+Variance de YB(t): 0.005972
+Kurtosis de YB(t): 8.956174
+Moyenne corrigée de YB(t): 0.478302
+Variance corrigée de YB(t): 0.003816
+Kurtosis corrigée de YB(t): 3.347973
+-----> Produit RC*dnu = 200
+
+RC: 12.500000
+Moyenne de YB(t): 0.414726
+Variance de YB(t): 0.011692
+Kurtosis de YB(t): 6.755277
+Moyenne corrigée de YB(t): 0.467627
+Variance corrigée de YB(t): 0.000265
+Kurtosis corrigée de YB(t): 3.653368

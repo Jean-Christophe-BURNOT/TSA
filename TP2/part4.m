@@ -31,6 +31,7 @@ M = 5000;
 NOVERLAP = 0.5;
 NFFT = 2^17;
 [Gamma3,VecteurFreq3] = welchDSPM(s,N,'hanning',M,NOVERLAP,NFFT);
-figure()
+figure();
 semilogy(VecteurFreq3,Gamma3)
+grid on;
 axis([0 0.5 10 10^7])
