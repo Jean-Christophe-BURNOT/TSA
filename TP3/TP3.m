@@ -2,7 +2,6 @@
 
 clear variables;
 close all;
-clc;
 
 %% TP3: Détection quadratique
 
@@ -24,7 +23,7 @@ fprintf("\n======= GENERATION DU SIGNAL (signal S) =========\n");
   % Message
 A0 = 1;
 phi = rand() * 2*pi;  % Phase aléatoire
-M = 0;
+M = 1;
 
 S = M*A0*cos(2*pi*nu0*t + phi);
 
@@ -96,57 +95,56 @@ fprintf("Kurtosis de Z(t): %f\n", kurtosis(Z.data));
 
 close all;
 
-product = [2,20,100];
-for i=1:3
-  fprintf("\n======= FILTRAGE INTEGRATEUR (signal W) ========\n");
-  
-  RC = product(i)/dnu;
-  fprintf("-----> Produit RC*dnu = %d\n", product(i));
-  
-  figure()
-  RCFp = struct('Fs', Fs, 'RC', RC);
-  [W, RCFp] = RCF(Z, RCFp);
-
-  % fprintf("RC: %f", mean(RC));
-  % fprintf("Moyenne de YB(t): %f\n", mean(Wb.data));
-  % fprintf("Variance de YB(t): %f\n", std(Wb.data)^2);
-  % fprintf("Kurtosis de YB(t): %f\n", kurtosis(Wb.data));
-  
-  WC = W.data( W.time > round(RC*5));
-  
-  fprintf("Moyenne corrigée de W(t): %f\n", mean(WC));
-  fprintf("Variance corrigée de W(t): %f\n", std(WC)^2);
-  fprintf("Ecart-type corrigée de W(t): %f\n", std(WC));
-  fprintf("Kurtosis corrigée de W(t): %f\n", kurtosis(WC));
-  fprintf("Puissance moyenne corrigée de W(t): %f\n", mean(WC.^2));
-  
-end
-
-
-% product = 20;
-
-% RC = product/dnu;
-% fprintf("-----> Produit RC*dnu = %d\n", product);
+% product = [2,20,100];
+% for i=1:3
+%   fprintf("\n======= FILTRAGE INTEGRATEUR (signal W) ========\n");
+%   
+%   RC = product(i)/dnu;
+%   fprintf("-----> Produit RC*dnu = %d\n", product(i));
+%   
+%   figure()
+%   RCFp = struct('Fs', Fs, 'RC', RC);
+%   [W, RCFp] = RCF(Z, RCFp);
 % 
-% figure()
-% RCFp = struct('Fs', Fs, 'RC', RC);
-% [Wb, RCFp] = RCF(Z, RCFp);
+%   % fprintf("RC: %f", mean(RC));
+%   % fprintf("Moyenne de YB(t): %f\n", mean(Wb.data));
+%   % fprintf("Variance de YB(t): %f\n", std(Wb.data)^2);
+%   % fprintf("Kurtosis de YB(t): %f\n", kurtosis(Wb.data));
+%   
+%   WC = W.data( W.time > round(RC*5));
+%   
+%   fprintf("Moyenne corrigée de W(t): %f\n", mean(WC));
+%   fprintf("Variance corrigée de W(t): %f\n", std(WC)^2);
+%   fprintf("Ecart-type corrigée de W(t): %f\n", std(WC));
+%   fprintf("Kurtosis corrigée de W(t): %f\n", kurtosis(WC));
+%   fprintf("Puissance moyenne corrigée de W(t): %f\n", mean(WC.^2));
+%   
+% end
 
-% WbC = Wb.data( Wb.time > round(RC*5));
-% 
-% fprintf("RC: %f", mean(RC));
-% fprintf("Moyenne de YS(t): %f\n", mean(Wb.data));
-% fprintf("Variance de YS(t): %f\n", std(Wb.data)^2);
-% fprintf("Kurtosis de YS(t): %f\n", kurtosis(Wb.data));
+product = 20;
 
+RC = product/dnu;
+fprintf("-----> Produit RC*dnu = %d\n", product);
 
-close all;
+figure()
+RCFp = struct('Fs', Fs, 'RC', RC);
+[Wb, RCFp] = RCF(Z, RCFp);
 
+WbC = Wb.data( Wb.time > round(RC*5));
 
+fprintf("RC: %f", mean(RC));
+fprintf("Moyenne de YS(t): %f\n", mean(Wb.data));
+fprintf("Variance de YS(t): %f\n", std(Wb.data)^2);
+fprintf("Kurtosis de YS(t): %f\n", kurtosis(Wb.data));
 
+%%
 
+dnu = 16;
+product = 20;
+order = 6;
 
-
+S = load("SignalRecu_2.mat");
+[TxMsg,Xp] = RxMessage_DQ(S.X,S.Xp);
 
 
 

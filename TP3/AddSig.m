@@ -1,6 +1,6 @@
 function [S] = AddSig(X,Y)
 
-%  Computes the sum Z of the two signals X and Y.
+% [S] = AddSig(X,Y) Computes the sum Z of the two signals X and Y.
 %
 % Inputs
 % X, Y  Signal structures with fields:
